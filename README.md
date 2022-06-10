@@ -33,3 +33,28 @@ After voting rounds have been completed, remove the event listeners on the produ
 Add a button with the text View Results, which when clicked displays the list of all the products followed by the votes received, and number of times seen for each. Example: banana had 3 votes, and was seen 5 times.
 
 NOTE: Displayed product names should match the file name for the product. Example: the product represented with dog-duck.jpg should be displayed to the user as exactly "dog-duck" when the results are shown.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Lauren's notes
+Voting app
+
+use a contstructor (.this notation) to access properties in an object
+
+object includes following vars: 1. name 2. file path 3. views 4. votes
+
+an eventListener for votes
+++incrementing to count votes
+
+for/while loop will render the photos will the condition is true (I thought include would help me)
+push will track the votes in the object
+splice will allow me to replace items in an array, which I think will help me be sure that I am not repeating items right away. I'll want to start at the start of the array 0 and removed 3 items.
+
+rounds are stored in a var so that I can update this 1 times in the code, so .length notation for loops
+
+write a function to count rounds
+if/else(remove event listener, then button "view results" is available)
+render vote count in a li output
+
+src is the html tag for images alt is the html tag for the image name
