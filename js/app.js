@@ -5,12 +5,10 @@
 let totalAnswers = 25;
 let currentAnswers = 0;
 
-
 function Product(name) {
   this.name = name;
   this.votes = 0;
   this.views = 0;
-  
 }
 
 Product.prototype.render = function (i) {
@@ -39,7 +37,6 @@ let allProducts = [
   new Product("water-can"),
   new Product("wine-glass"),
 ];
-//console.log(allProducts);
 //random image function
 function randImage() {
   let randProduct = Math.floor(Math.random() * allProducts.length);
@@ -57,7 +54,6 @@ function generateUnique() {
   }
   return uniqueNumbers;
 }
-//console.log(generateUnique()); //should see the same and clicks, and views in console
 
 let currentProducts = [];
 function showRandomImages() {
@@ -70,34 +66,48 @@ function showRandomImages() {
 }
 showRandomImages();
 
-function addClickHandler(i) {
-  let img = document.getElementById(`img-${i}`);
-  img.addEventListener("click", showRandomImages) 
-    console.log(`Clicked item ${i}`);
-  currentProducts[i].clicks++; 
-    showRandomImages();
-  };
+function addClickHandler(n) {
+  let img = document.getElementById(`img-${n}`);
+  img.addEventListener("click", onClick) 
+  }
 
+  function onClick(event){
+    let id=event.target.id
+   if(currentAnswers===totalAnswers){
+     for(let i=0; i<2; i++){
+       let img=document.getElementById(`img-${i}`);
+       img.removeEventListener("click", addClickHandler);
+     }
+     return;
+   } else{
+    currentAnswers++;
+    currentProducts[`${id[4]}`].votes++;
+    showRandomImages();
+   }
+   
+  
+  }
 
 addClickHandler(0);
 addClickHandler(1);
 addClickHandler(2);
 
-// function submitVote(event) {
-//   event.preventDefault();
-//   if (currentAnswers === totalAnswers) {
-//     for (let i = 0; i < itemViews.length; i++) {
-//       let results = document.createElement("li");
-//       results.textContent =
-//         itemViews[i].name +
-//         "was voted for" +
-//         itemViews[i].votes +
-//         "and was viewed" +
-//         itemViews[i].views +
-//         ".";
-//       resultsLists.appendChild(results);
-//     }
-//   }
-// }
+function submitVote() {
+  let bodyContainer=document.getElementById("results-list");
 
-//creates a list//loop three times to render 3 different images, if you put that thing in a function, could you call that from your eventlistener, when the pages loads and after each click
+  for (let i = 0; i < allProducts.length; i++) {   
+    let product=allProducts[i];
+    let results = document.createElement("li");
+      results.innerText =
+        product.name +
+        "was voted for " +
+        product.votes +
+        "and was viewed " +
+        product.views +
+        ".";
+      bodyContainer.appendChild(results); 
+    }
+}
+
+let resultsLists=document.getElementById("results");
+resultsLists.addEventListener("click",submitVote);
