@@ -72,9 +72,9 @@ function addClickHandler(n) {
   }
 
   function onClick(event){
-    let id=event.target.id
-   if(currentAnswers===totalAnswers){
-     for(let i=0; i<2; i++){
+    let id = event.target.id
+   if(currentAnswers === totalAnswers){
+     for(let i=0; i < totalAnswers; i++){
        let img=document.getElementById(`img-${i}`);
        img.removeEventListener("click", addClickHandler);
      }
@@ -100,11 +100,11 @@ function submitVote() {
     let results = document.createElement("li");
       results.innerText =
         product.name +
-        "was voted for " +
+        " was voted for " +
         product.votes +
-        "and was viewed " +
+        " times and was viewed " +
         product.views +
-        ".";
+        " times.";
       bodyContainer.appendChild(results); 
     }
 }

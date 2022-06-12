@@ -1,0 +1,39 @@
+*{
+  padding: 2;
+  margin: 2; 
+  font-family: 'Verdana', sans-serif;
+  font-size: 1em;
+}
+html, body{
+  height: 100%;
+}
+
+h1{
+ font-size:2em;
+ text-align:center;
+ background: tomato;
+ padding:20px;
+}
+#container{
+ text-align: center;
+  height:1000px;
+  background: linear-gradient(to bottom, #7927b2, #fb3182);
+ 
+}
+#img-Body {
+  display:flex;
+  height: 400px;
+  max-width: 960px;
+  margin: 3 auto;
+  padding: 30px;
+  background: #808080;
+  align-items: center;
+
+}
+
+
+footer{
+  background: tomato;
+  padding: 20px;
+}
+
