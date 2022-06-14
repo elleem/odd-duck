@@ -2,7 +2,7 @@
 
 // console.log("hello world");
 //global variables
-let totalAnswers = 5;
+let totalAnswers = 25;
 let currentAnswers = 0;
 
 function Product(name) {
