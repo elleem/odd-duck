@@ -74,7 +74,7 @@ function addClickHandler(n) {
   function onClick(event){
     let id = event.target.id
    if(currentAnswers === totalAnswers){
-     for(let i=0; i < totalAnswers; i++){
+     for(let i=0; i < 2; i++){
        let img=document.getElementById(`img-${i}`);
        img.removeEventListener("click", addClickHandler);
      }
@@ -105,22 +105,42 @@ function submitVote() {
         " times.";
       bodyContainer.appendChild(results); 
     }
+    saveData(); 
 }
 
-function saveData(){
-  if (localStorage.getItem("productData") === null){
-    let savedProducts=[];
-    for (let i = 0; i <allProducts.length; i++){
-      let product = allProducts[i];
-      savedProducts.push(product); 
-    }
-    savedProducts =JSON.stringify(savedProducts);
-  } else if (localStorage.getItem("productData")){
-    let savedData = localStorage.getItem("productData");
-    JSON.parse(savedData);
-    console.log(savedData); 
-  }
-}
+
 
 let resultsLists=document.getElementById("results");
 resultsLists.addEventListener("click",submitVote);
+
+Product.prototype.save =function(){
+  if (localStorage.getItem("savedProducts") === null){
+    let emptyArray=JSON.stringify([]);
+    localStorage.setItem("savedProducts", emptyArray); 
+
+    let retrievedProducts = localStorage.getItem("savedProducts"); 
+    retrievedProducts = JSON.parse(retrievedProducts); 
+    retrievedProducts.push(this); 
+
+    let savedProducts = JSON.stringify (retrievedProducts); 
+    localStorage.setITem("savedProducts", savedProducts); 
+
+    if (localStorage.getItem("savedProduct")){
+      let retrievedProducts = localStorage.getItem("savedProducts"); 
+      retrievedData = JSON.parse(retrievedData); 
+    }
+    console.log(retrievedData); 
+  }
+}
+//     for (let i = 0; i <allProducts.length; i++){
+//       let product = allProducts[i];
+      
+//     }
+//     savedProducts = JSON.stringify(savedProducts);
+
+//   } else if (localStorage.getItem("productData")){
+//     let savedData = localStorage.getItem("productData");
+//     JSON.parse(savedData);
+    
+//   }
+// }
