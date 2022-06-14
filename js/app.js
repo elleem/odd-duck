@@ -2,7 +2,7 @@
 
 // console.log("hello world");
 //global variables
-let totalAnswers = 25;
+let totalAnswers = 5;
 let currentAnswers = 0;
 
 function Product(name) {
@@ -105,7 +105,7 @@ function submitVote() {
         " times.";
       bodyContainer.appendChild(results); 
     }
-    saveData(); 
+    save(); 
 }
 
 
@@ -113,34 +113,20 @@ function submitVote() {
 let resultsLists=document.getElementById("results");
 resultsLists.addEventListener("click",submitVote);
 
-Product.prototype.save =function(){
+
+function save(){
   if (localStorage.getItem("savedProducts") === null){
-    let emptyArray=JSON.stringify([]);
-    localStorage.setItem("savedProducts", emptyArray); 
-
-    let retrievedProducts = localStorage.getItem("savedProducts"); 
-    retrievedProducts = JSON.parse(retrievedProducts); 
-    retrievedProducts.push(this); 
-
-    let savedProducts = JSON.stringify (retrievedProducts); 
-    localStorage.setITem("savedProducts", savedProducts); 
-
-    if (localStorage.getItem("savedProduct")){
-      let retrievedProducts = localStorage.getItem("savedProducts"); 
-      retrievedData = JSON.parse(retrievedData); 
+    let savedProducts = []; 
+    for (let i = 0; i <allProducts.length; i++){
+     let product = allProducts[i];
+     savedProducts.push(product); 
     }
-    console.log(retrievedData); 
+    savedProducts = JSON.stringify(savedProducts);
+    localStorage.setItem('productData', savedProducts); 
+  } else if (localStorage.getItem("productData")){
+    let savedData = localStorage.getItem("productData");
+    JSON.parse(savedData);
   }
 }
-//     for (let i = 0; i <allProducts.length; i++){
-//       let product = allProducts[i];
-      
-//     }
-//     savedProducts = JSON.stringify(savedProducts);
 
-//   } else if (localStorage.getItem("productData")){
-//     let savedData = localStorage.getItem("productData");
-//     JSON.parse(savedData);
-    
-//   }
-// }
+//2 or 3 functions, put things in, get things out and should be seperate.
