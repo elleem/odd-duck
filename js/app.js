@@ -2,7 +2,7 @@
 
 // console.log("hello world");
 //global variables
-let totalAnswers = 25;
+let totalAnswers = 5;
 let currentAnswers = 0;
 
 function Product(name) {
@@ -74,7 +74,7 @@ function addClickHandler(n) {
   function onClick(event){
     let id = event.target.id
    if(currentAnswers === totalAnswers){
-     for(let i=0; i < totalAnswers; i++){
+     for(let i=0; i < 2; i++){
        let img=document.getElementById(`img-${i}`);
        img.removeEventListener("click", addClickHandler);
      }
@@ -84,13 +84,14 @@ function addClickHandler(n) {
     currentProducts[`${id[4]}`].votes++;
     showRandomImages();
    }
-   
-  
   }
 
 addClickHandler(0);
 addClickHandler(1);
 addClickHandler(2);
+
+
+
 
 function submitVote() {
   let bodyContainer=document.getElementById("results-list");
@@ -107,7 +108,28 @@ function submitVote() {
         " times.";
       bodyContainer.appendChild(results); 
     }
+    save(); 
 }
+
+
 
 let resultsLists=document.getElementById("results");
 resultsLists.addEventListener("click",submitVote);
+
+
+function save(){
+  if (localStorage.getItem("savedProducts") === null){
+    let savedProducts = []; 
+    for (let i = 0; i <allProducts.length; i++){
+     let product = allProducts[i];
+     savedProducts.push(product); 
+    }
+    savedProducts = JSON.stringify(savedProducts);
+    localStorage.setItem('productData', savedProducts); 
+  } else if (localStorage.getItem("productData")){
+    let savedData = localStorage.getItem("productData");
+    JSON.parse(savedData);
+  }
+}
+
+//2 or 3 functions, put things in, get things out and should be seperate.
