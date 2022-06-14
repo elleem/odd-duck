@@ -90,6 +90,9 @@ addClickHandler(0);
 addClickHandler(1);
 addClickHandler(2);
 
+
+
+
 function submitVote() {
   let bodyContainer=document.getElementById("results-list");
 
