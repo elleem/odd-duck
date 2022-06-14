@@ -84,8 +84,6 @@ function addClickHandler(n) {
     currentProducts[`${id[4]}`].votes++;
     showRandomImages();
    }
-   
-  
   }
 
 addClickHandler(0);
@@ -107,6 +105,21 @@ function submitVote() {
         " times.";
       bodyContainer.appendChild(results); 
     }
+}
+
+function saveData(){
+  if (localStorage.getItem("productData") === null){
+    let savedProducts=[];
+    for (let i = 0; i <allProducts.length; i++){
+      let product = allProducts[i];
+      savedProducts.push(product); 
+    }
+    savedProducts =JSON.stringify(savedProducts);
+  } else if (localStorage.getItem("productData")){
+    let savedData = localStorage.getItem("productData");
+    JSON.parse(savedData);
+    console.log(savedData); 
+  }
 }
 
 let resultsLists=document.getElementById("results");
