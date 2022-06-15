@@ -2,7 +2,7 @@
 
 // console.log("hello world");
 //global variables
-let totalAnswers = 25;
+let totalAnswers = 5;
 let currentAnswers = 0;
 
 function Product(name) {
@@ -95,6 +95,7 @@ addClickHandler(2);
 
 function submitVote() {
   let bodyContainer=document.getElementById("results-list");
+  
 
   for (let i = 0; i < allProducts.length; i++) {   
     let product=allProducts[i];
@@ -109,6 +110,7 @@ function submitVote() {
       bodyContainer.appendChild(results); 
     }
     save(); 
+  loadProducts(); 
 }
 
 
@@ -118,18 +120,22 @@ resultsLists.addEventListener("click",submitVote);
 
 
 function save(){
-  if (localStorage.getItem("savedProducts") === null){
-    let savedProducts = []; 
-    for (let i = 0; i <allProducts.length; i++){
-     let product = allProducts[i];
-     savedProducts.push(product); 
-    }
-    savedProducts = JSON.stringify(savedProducts);
-    localStorage.setItem('productData', savedProducts); 
-  } else if (localStorage.getItem("productData")){
-    let savedData = localStorage.getItem("productData");
-    JSON.parse(savedData);
-  }
+  if (localStorage.getItem("products") === null){
+  let stringify=JSON.stringify(allProducts);
+  localStorage.setItem("products", stringify);
+}
 }
 
+function loadProducts(){
+  if (localStorage.getItem("products")){
+  let showProducts = localStorage.getItem("products");
+  showProducts = JSON.parse(showProducts);
+  for (let i = 0; i < showProducts.length; i++){
+    let showProduct = showProducts[i];
+    //let pushProducts = new Product(showProduct.name); 
+    allProducts.push(pushProducts); 
+  }
+ }
+}
+//
 //2 or 3 functions, put things in, get things out and should be seperate.
