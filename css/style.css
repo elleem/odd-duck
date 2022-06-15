@@ -3,6 +3,7 @@
   margin: 2; 
   font-family: 'Verdana', sans-serif;
   font-size: 1em;
+  color:black; 
 }
 html, body{
   height: 100%;
@@ -15,9 +16,10 @@ h1{
  background: tomato;
  padding:20px;
 }
+
 #container{
  text-align: center;
-  height:1000px;
+  height:1500px;
   background: linear-gradient(to bottom, #7927b2, #fb3182);
  
 }

@@ -108,15 +108,20 @@ function submitVote() {
         " times.";
       bodyContainer.appendChild(results); 
     }
-    save(); 
+   
 }
+
+ function renderChart(){
+  save(); 
+  viewChart(); 
+ }
 
 
 
 let resultsLists=document.getElementById("results");
-resultsLists.addEventListener("click",submitVote);
+resultsLists.addEventListener("click",renderChart);
 
-
+//2 or 3 functions, put things in, get things out and should be seperate.
 function save(){
   if (localStorage.getItem("savedProducts") === null){
     let savedProducts = []; 
@@ -132,4 +137,74 @@ function save(){
   }
 }
 
-//2 or 3 functions, put things in, get things out and should be seperate.
+
+
+function viewChart(){
+  let ctx = document.getElementById('chart').getContext('2d');
+  let itemNames = [];
+  let itemVotes = [];
+  let itemViews = [];
+
+  for(let i = 0; i < allProducts.length; i++){
+    let product = allProducts[i]; 
+    itemNames.push(product.name);
+    itemVotes.push(product.votes);
+    itemViews.push(product.views);
+  }
+
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: itemNames,
+        datasets: [{
+            label: '# of Votes',
+            data: itemVotes,
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },
+        {
+          label: '# of Views',
+          data: itemViews,
+          backgroundColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
