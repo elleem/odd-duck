@@ -2,7 +2,7 @@
 
 // console.log("hello world");
 //global variables
-let totalAnswers = 5;
+let totalAnswers = 25;
 let currentAnswers = 0;
 
 function Product(name) {
@@ -66,12 +66,12 @@ function showRandomImages() {
   }
 }
 showRandomImages();
-
+//add click
 function addClickHandler(n) {
   let img = document.getElementById(`img-${n}`);
   img.addEventListener("click", onClick) 
   }
-
+//remove click
   function onClick(event){
     let id = event.target.id
    if(currentAnswers === totalAnswers){
@@ -93,7 +93,7 @@ addClickHandler(2);
 
 
 
-
+//list function
 function submitVote() {
   let bodyContainer=document.getElementById("results-list");
   
@@ -111,7 +111,6 @@ function submitVote() {
       bodyContainer.appendChild(results); 
     }
     save(); 
-  loadProducts(); 
 }
 
 
