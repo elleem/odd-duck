@@ -55,6 +55,7 @@ function generateUnique() {
   return uniqueNumbers;
 }
 
+//render function
 let currentProducts = [];
 function showRandomImages() {
   currentProducts = generateUnique();
@@ -134,25 +135,4 @@ function save(){
   localStorage.setItem("products", stringify);
   }
 }
-}//add else if there are products, then hydrate that local data make it into an array, 
-//not into allProducts, do itrerate through all products, and then add into currentProducts
-
-// function loadProducts(){
-//   if (localStorage.getItem("products")){
-//   let retrievedProducts = localStorage.getItem("");
-  
-//   if (retrievedProducts){
-//   let parsedData = JSON.parse(retrievedProducts)
-//   allProducts = parsedData
-//   } else {
-//    showRandomImages(); 
-//   }
-  //for (let i = 0; i < showProducts.length; i++){
-   //let showProduct = showProducts[i];
-    //let pushProducts = new Product(showProduct.name); 
-    //allProducts.push(allProducts); 
-//   }
-//  }
- //loadProducts(); 
-//
-//2 or 3 functions, put things in, get things out and should be seperate.//get the current results and then add them
+}
