@@ -4,6 +4,7 @@
 //global variables
 let totalAnswers = 25;
 let currentAnswers = 0;
+priorNumbers = []; 
 
 function Product(name) {
   this.name = name;
@@ -43,14 +44,18 @@ function randImage() {
   return allProducts[randProduct];
 }
 
-//3 random images function
+//3 random images function with no repeats for next poll
 function generateUnique() {
   let uniqueNumbers = [];
   while (uniqueNumbers.length < 3) {
     let randNumber = randImage();
-    if (!uniqueNumbers.includes(randNumber)) {
+    if (!uniqueNumbers.includes(randNumber) && !priorNumbers.includes(randNumber)) {
       uniqueNumbers.push(randNumber);
+      priorNumbers.push(randNumber); 
     }
+  }
+  if (priorNumbers.length === 6){
+    priorNumbers.splice(0,3); 
   }
   return uniqueNumbers;
 }
@@ -123,7 +128,7 @@ function submitVote() {
 let resultsLists=document.getElementById("results");
 resultsLists.addEventListener("click",renderChart);
 
-//2 or 3 functions, put things in, get things out and should be seperate.
+//json!
 function save(){
   if (localStorage.getItem("products") === null){
   let stringify = JSON.stringify(allProducts);
@@ -144,7 +149,7 @@ function save(){
 
 
 
-
+//chart
 function viewChart(){
   let ctx = document.getElementById('chart').getContext('2d');
   let itemNames = [];
