@@ -55,6 +55,7 @@ function generateUnique() {
   return uniqueNumbers;
 }
 
+//render function
 let currentProducts = [];
 function showRandomImages() {
   currentProducts = generateUnique();
@@ -65,12 +66,12 @@ function showRandomImages() {
   }
 }
 showRandomImages();
-
+//add click
 function addClickHandler(n) {
   let img = document.getElementById(`img-${n}`);
   img.addEventListener("click", onClick) 
   }
-
+//remove click
   function onClick(event){
     let id = event.target.id
    if(currentAnswers === totalAnswers){
@@ -81,7 +82,7 @@ function addClickHandler(n) {
      return;
    } else{
     currentAnswers++;
-    currentProducts[`${id[4]}`].votes++;
+    currentProducts[`${id[4]}`].votes++; //literal id of 4
     showRandomImages();
    }
   }
@@ -92,9 +93,10 @@ addClickHandler(2);
 
 
 
-
+//list function
 function submitVote() {
   let bodyContainer=document.getElementById("results-list");
+  
 
   for (let i = 0; i < allProducts.length; i++) {   
     let product=allProducts[i];
@@ -123,19 +125,23 @@ resultsLists.addEventListener("click",renderChart);
 
 //2 or 3 functions, put things in, get things out and should be seperate.
 function save(){
-  if (localStorage.getItem("savedProducts") === null){
-    let savedProducts = []; 
-    for (let i = 0; i <allProducts.length; i++){
-     let product = allProducts[i];
-     savedProducts.push(product); 
-    }
-    savedProducts = JSON.stringify(savedProducts);
-    localStorage.setItem('productData', savedProducts); 
-  } else if (localStorage.getItem("productData")){
-    let savedData = localStorage.getItem("productData");
-    JSON.parse(savedData);
+  if (localStorage.getItem("products") === null){
+  let stringify = JSON.stringify(allProducts);
+  localStorage.setItem("products", stringify);
+  
+} else { 
+  let retrievedProducts = localStorage.getItem("products");
+  let parsedData = JSON.parse(retrievedProducts);
+  for (let i = 0; i < allProducts.length; i++){
+  allProducts[i].votes = allProducts[i].votes + parsedData[i].votes
+  allProducts[i].views = allProducts[i].views + parsedData[i].views
+  let stringify = JSON.stringify(allProducts);
+  localStorage.setItem("products", stringify);
   }
 }
+
+}
+
 
 
 
@@ -208,3 +214,4 @@ let myChart = new Chart(ctx, {
     }
 });
 }
+
