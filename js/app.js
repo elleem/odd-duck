@@ -81,7 +81,7 @@ function addClickHandler(n) {
      return;
    } else{
     currentAnswers++;
-    currentProducts[`${id[4]}`].votes++;
+    currentProducts[`${id[4]}`].votes++; //literal id of 4
     showRandomImages();
    }
   }
@@ -121,21 +121,38 @@ resultsLists.addEventListener("click",submitVote);
 
 function save(){
   if (localStorage.getItem("products") === null){
-  let stringify=JSON.stringify(allProducts);
+  let stringify = JSON.stringify(allProducts);
   localStorage.setItem("products", stringify);
-}
-}
-
-function loadProducts(){
-  if (localStorage.getItem("products")){
-  let showProducts = localStorage.getItem("products");
-  showProducts = JSON.parse(showProducts);
-  for (let i = 0; i < showProducts.length; i++){
-    let showProduct = showProducts[i];
-    //let pushProducts = new Product(showProduct.name); 
-    allProducts.push(pushProducts); 
+  
+} else { 
+  let retrievedProducts = localStorage.getItem("products");
+  let parsedData = JSON.parse(retrievedProducts);
+  for (let i = 0; i < allProducts.length; i++){
+  allProducts[i].votes = allProducts[i].votes + parsedData[i].votes
+  allProducts[i].views = allProducts[i].views + parsedData[i].views
+  let stringify = JSON.stringify(allProducts);
+  localStorage.setItem("products", stringify);
   }
- }
 }
+}//add else if there are products, then hydrate that local data make it into an array, 
+//not into allProducts, do itrerate through all products, and then add into currentProducts
+
+// function loadProducts(){
+//   if (localStorage.getItem("products")){
+//   let retrievedProducts = localStorage.getItem("");
+  
+//   if (retrievedProducts){
+//   let parsedData = JSON.parse(retrievedProducts)
+//   allProducts = parsedData
+//   } else {
+//    showRandomImages(); 
+//   }
+  //for (let i = 0; i < showProducts.length; i++){
+   //let showProduct = showProducts[i];
+    //let pushProducts = new Product(showProduct.name); 
+    //allProducts.push(allProducts); 
+//   }
+//  }
+ //loadProducts(); 
 //
-//2 or 3 functions, put things in, get things out and should be seperate.
+//2 or 3 functions, put things in, get things out and should be seperate.//get the current results and then add them
