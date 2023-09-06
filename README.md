@@ -40,7 +40,7 @@ NOTE: Displayed product names should match the file name for the product. Exampl
 Lauren's notes
 Voting app
 
-use a contstructor (.this notation) to access properties in an object
+use a constructor (.this notation) to access properties in an object
 
 object includes following vars: 1. name 2. file path 3. views 4. votes
 
